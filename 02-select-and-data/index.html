@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Select</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<pre>
+    var body = d3.select("body");//选择文档中的body元素
+    var svg = body.select("svg");//选择body中的svg元素
+    var p = body.selectAll("p");//选择body中所有的p元素
+    var p1 = body.select("p");//选择body中第一个p元素
+</pre>
+<pre>
+    data()：将一个数组绑定到选择集上，数组各项和选择集各元素绑定，也就是一一对应的关系
+    datum()：将一个数据绑定到所有选择集上
+</pre>
+<p><a href="data.html" target="_blank">data</a></p>
+<p><a href="datum.html" target="_blank">datum</a></p>
+
+</body>
+</html>

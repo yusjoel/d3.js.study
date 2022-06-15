@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>datum绑定一个数据</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<p>dog</p>
+<p>cat</p>
+<p>pig</p>
+
+<script>
+    	var str = "is an animal";//新建一个字符串
+    	var p = d3.select("body")
+    		.selectAll("p");
+
+    	p.datum(str)//绑定
+    		.text(function(d,i){
+    			return "第"+i+"个元素"+d;
+    		});
+</script>
+</body>
+</html>

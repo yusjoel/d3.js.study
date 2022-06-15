@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>data绑定一个数组</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<p>dog</p>
+<p>cat</p>
+<p>pig</p>
+
+<script>
+    	var p = d3.select("body")
+    		.selectAll("p");
+
+    	var dataset = ["so cute","cute","fat"];   		
+    	p.data(dataset)
+    		.text(function(d,i){
+    			return "第"+i+"个动物"+d;
+    		});
+</script>
+</body>
+</html>
