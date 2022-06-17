@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>线性比例尺与序数比例尺</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+<pre>
+    d3.js中的比例尺——一种映射关系，从domain映射到range域 
+    线性比例尺
+    var scaleLinear = d3.scaleLinear()
+        .domain([min,max])
+        .range([0,300]);
+    
+    序数比例尺
+    var scaleOrdinal = d3.scaleOrdinal()
+        .domain(indices)
+        .range(colors);
+</pre>
+
+<svg width="960" height="300"></svg>
+<br />
+<script>
+    var dataset = [1.2, 2.3, 0.9, 1.5, 3.3];
+    var min = d3.min(dataset);//得到最小值
+    var max = d3.max(dataset);//得到最大值
+    var scaleLinear = d3.scaleLinear()
+        .domain([min,max])
+        .range([0,300]);
+
+    document.write("scaleLinear(1)输出："+scaleLinear(1));
+    d3.select("body").append("br");//换行
+    document.write("scaleLinear(2)输出："+scaleLinear(2));
+    d3.select("body").append("br");
+    document.write("scaleLinear(3.3)输出："+scaleLinear(3.3));
+    d3.select("body").append("br");
+    d3.select("body").append("br");
+    
+    var index = [0,1,2,3,4];
+    var color = ["red","blue","yellow","black","green"];
+    var scaleOrdinal = d3.scaleOrdinal()
+        .domain(index)
+        .range(color);
+    document.write("scaleOrdinal(1)输出："+scaleOrdinal(1));
+    d3.select("body").append("br");//换行
+    document.write("scaleOrdinal(2)输出："+scaleOrdinal(2));
+    d3.select("body").append("br");
+    document.write("scaleOrdinal(4)输出："+scaleOrdinal(4));
+    d3.select("body").append("br");
+
+</script>
+
+<script>
+    var marge = {top:60,bottom:60,left:60,right:60}
+    var dataset = [ 2.5 , 2.1 , 1.7 , 1.3 , 0.9 ];  
+    
+    //定义一个线性比例尺
+    var scaleLinear = d3.scaleLinear()
+        .domain([0,d3.max(dataset)])
+        .range([0,300]);
+    
+    var svg = d3.select("svg");
+    var g = svg.append("g")
+        .attr("transform","translate("+marge.top+","+marge.left+")");
+    
+    var rectHeight = 30;
+    
+    g.selectAll("rect")
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("x",20)
+        .attr("y",function(d,i){
+            return i*rectHeight;
+        })
+        .attr("width",function(d){
+            return scaleLinear(d);//设置宽,并在这里使用比例尺
+        })
+        .attr("height",rectHeight-5)
+        .attr("fill","blue");
+</script>
+
+</body>
+</html>
