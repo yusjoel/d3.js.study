@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>选择、插入和删除</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<pre>
+通过class和id选中
+d3.select("body")
+    .select(".myClass")
+	
+d3.select("body")
+    .select("#myId")
+
+</pre>
+<pre>
+在回调中选中
+.text(function(d,i){
+	if(i==3){
+		d3.select(this).style("color","red");
+	}
+	return d;
+})
+</pre>
+<pre>
+append()：在选择集尾部插入元素
+insert()：在选择集前面插入元素
+remove()：删除选择集
+</pre>
+<p><a href="select.html" target="_blank">select</a></p>
+<p><a href="append.html" target="_blank">append</a></p>
+<p><a href="remove.html" target="_blank">remove</a></p>
+</body>
+</html>

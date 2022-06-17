@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>插入和尾部添加</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<p>dog</p>
+<p class="myClass">cat</p>
+<p id="myId">pig</p>
+<p>rat</p>
+
+<script>
+d3.select("body")
+    .append("p")
+    .text("another animal")
+    .style("color","red");
+    		
+d3.select("body")
+    .insert("p",".myClass")
+    .text("insert an animal")
+    .style("color","red");
+</script>
+</body>
+</html>

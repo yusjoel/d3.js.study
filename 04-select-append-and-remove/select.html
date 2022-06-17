@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>根据类型和id选择</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<p>dog</p>
+<p class="myClass">cat</p>
+<p id="myId">pig</p>
+<p>rat</p>
+
+<script>
+d3.select("body")
+    .select(".myClass")
+    .style("color","red");
+    
+d3.select("body")
+    .select("#myId")
+    .style("color","blue");
+    
+var dataset = [3,6,9,12];
+d3.select("body")
+    .selectAll("p")
+    .data(dataset)
+    .text(function(d,i){
+        if(i==3){
+            d3.select(this).style("color","yellow");
+        }
+        return d;
+    })
+</script>
+</body>
+</html>
