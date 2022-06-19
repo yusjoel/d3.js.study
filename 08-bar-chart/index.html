@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>柱状图</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+
+<pre>
+Band Scales
+
+
+    <a href="https://github.com/d3/d3-scale/blob/v4.0.2/README.md#scaleBand">d3.scaleBand()</a>
+    Constructs a new band scale with the specified domain and range, no padding, no rounding and center alignment.
+    做一个带状的比例尺，基本的带状比例尺如下，但这个方法创建的是最简单那种。
+
+    <img src="band.png"></img>
+
+    <a href="https://github.com/d3/d3-array/blob/v3.1.6/README.md#range">d3.range([start, ]stop[, step])</a>
+    d3.range(length) => [1, 2, 3, ..., length]
+
+    <a href="https://github.com/d3/d3-scale/blob/v4.0.2/README.md#band_rangeRound">band.rangeRound([range])</a>
+    band
+    .range(range)
+    .round(true);
+</pre>
+
+
+<svg width="960" height="600"></svg>
+<script>
+    var marge = {top:60,bottom:60,left:60,right:60}
+    var dataset = [10,20,30,23,13,40,27,35,20];
+
+    var svg = d3.select("svg");//得到SVG画布
+    var width = svg.attr("width");//得到画布的宽
+    var height = svg.attr("height");//得到画布的长
+    var g = svg.append("g")
+        .attr("transform","translate("+marge.top+","+marge.left+")");
+
+    var xScale = d3.scaleBand()
+        .domain(d3.range(dataset.length))
+        .rangeRound([0,width-marge.left-marge.right]);
+    var xAxis = d3.axisBottom(xScale);
+
+    var yScale = d3.scaleLinear()
+        .domain([0,d3.max(dataset)])
+        .range([height-marge.top-marge.bottom,0]);
+    var yAxis = d3.axisLeft(yScale);
+
+    var gs = g.selectAll(".rect")
+        .data(dataset)
+        .enter()
+        .append("g");
+
+    var rectPadding = 20;//矩形之间的间隙
+    gs.append("rect")
+        .attr("x",function(d,i){
+            return xScale(i)+rectPadding/2;
+        })
+        .attr("y",function(d){
+            return yScale(d);
+        })
+        .attr("width",function(){
+            return xScale.step()-rectPadding;
+        })
+        .attr("height",function(d){
+            return height-marge.top-marge.bottom-yScale(d);
+        })
+        .attr("fill","blue");
+
+    gs.append("text")
+        .attr("x",function(d,i){
+            return xScale(i)+rectPadding/2;
+        })
+        .attr("y",function(d){
+            return yScale(d);
+        })
+        .attr("dx",function(){
+            (xScale.step()-rectPadding)/2;
+        })
+        .attr("dy",20)
+        .text(function(d){
+            return d;
+        })
+
+    g.append("g")
+        .attr("transform","translate(0,"+(height-marge.top-marge.bottom)+")")
+        .call(xAxis);
+
+    g.append("g")
+        .call(yAxis);
+
+</script>
+</body>
+
+</html>
