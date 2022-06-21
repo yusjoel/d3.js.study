@@ -18,6 +18,7 @@
 1. bar chart [教程](https://blog.csdn.net/qq_34414916/article/details/80032731) [Demo](https://yusjoel.github.io/d3.js.study/08-bar-chart/)
 1. transition [教程](https://blog.csdn.net/qq_34414916/article/details/80033730) [Demo](https://yusjoel.github.io/d3.js.study/09-transition/)
 1. event [教程](https://blog.csdn.net/qq_34414916/article/details/80035695) [Demo](https://yusjoel.github.io/d3.js.study/10-event/)
+1. pie [教程](https://blog.csdn.net/qq_34414916/article/details/80036301) [Demo](https://yusjoel.github.io/d3.js.study/11-pie/)
 
 ## read csv
 http://bl.ocks.org/ndarville/7075823
