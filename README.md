@@ -15,6 +15,8 @@
 1. simple chart [教程](https://blog.csdn.net/qq_34414916/article/details/80029352) [Demo](https://yusjoel.github.io/d3.js.study/05-simple-chart/)
 1. scale [教程](https://blog.csdn.net/qq_34414916/article/details/80029808) [Demo](https://yusjoel.github.io/d3.js.study/06-scale/)
 1. axis [教程](https://blog.csdn.net/qq_34414916/article/details/80032354) [Demo](https://yusjoel.github.io/d3.js.study/07-axis/)
+1. bar chart [教程](https://blog.csdn.net/qq_34414916/article/details/80032731) [Demo](https://yusjoel.github.io/d3.js.study/08-bar-chart/)
+1. transition [教程](https://blog.csdn.net/qq_34414916/article/details/80033730) [Demo](https://yusjoel.github.io/d3.js.study/09-transition/)
 
 ## read csv
 http://bl.ocks.org/ndarville/7075823

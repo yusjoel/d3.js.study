@@ -2,31 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>柱状图</title>
+    <title>过渡效果</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 
 <body>
 
 <pre>
-Band Scales
-
-
-    <a href="https://github.com/d3/d3-scale/blob/v4.0.2/README.md#scaleBand">d3.scaleBand()</a>
-    Constructs a new band scale with the specified domain and range, no padding, no rounding and center alignment.
-    做一个带状的比例尺，基本的带状比例尺如下，但这个方法创建的是最简单那种。
-
-    <img src="band.png"/>
-
-    <a href="https://github.com/d3/d3-array/blob/v3.1.6/README.md#range">d3.range([start, ]stop[, step])</a>
-    d3.range(length) => [1, 2, 3, ..., length]
-
-    <a href="https://github.com/d3/d3-scale/blob/v4.0.2/README.md#band_rangeRound">band.rangeRound([range])</a>
-    band
-    .range(range)
-    .round(true);
+过渡的基本格式:
+    .attr("attrName", startValue)
+    .transistion()
+    .attr("attrName", endValue)
+    
+过渡的属性:
+    .transistion()
+    .duration(2000)，表示过渡时间持续2秒
+    .delay(500)，表示延迟0.4秒后再进行过渡
+    .ease(d3.easeElasticInOut)表示过渡方式，注意这里和v3版本的区别
 </pre>
-
 
 <svg width="960" height="600"></svg>
 <script>
@@ -59,23 +52,37 @@ Band Scales
         .attr("x",function(d,i){
             return xScale(i)+rectPadding/2;
         })
-        .attr("y",function(d){
-            return yScale(d);
+        .attr("y",function(d){//这里是要改变的，即初始状态
+            var min = yScale.domain()[0];
+            return yScale(min);//可以得知，这里返回的是最大值
         })
         .attr("width",function(){
             return xScale.step()-rectPadding;
         })
-        .attr("height",function(d){
+        .attr("height",function(d){//这里要改变，即初始状态
+            return 0;
+        })
+        .attr("fill","blue")
+        .transition()//添加过渡
+        .duration(2000)//持续时间
+        .delay(function(d,i){//延迟
+            return i*400;
+        })
+        .ease(d3.easeElasticInOut)//这里读者可以自己将注释去掉，看看效果（chrome浏览器会报错，但是不影响效果）
+        .attr("y",function(d){//回到最终状态
+            return yScale(d);
+        })
+        .attr("height",function(d){//回到最终状态
             return height-marge.top-marge.bottom-yScale(d);
         })
-        .attr("fill","blue");
 
     gs.append("text")
         .attr("x",function(d,i){
             return xScale(i)+rectPadding/2;
         })
         .attr("y",function(d){
-            return yScale(d);
+            var min = yScale.domain()[0];
+            return yScale(min);
         })
         .attr("dx",function(){
             (xScale.step()-rectPadding)/2;
@@ -84,6 +91,15 @@ Band Scales
         .text(function(d){
             return d;
         })
+        .transition()
+        .duration(2000)
+        .delay(function(d,i){
+            return i*400;
+        })
+        .ease(d3.easeElasticInOut)
+        .attr("y",function(d){
+            return yScale(d);
+        });
 
     g.append("g")
         .attr("transform","translate(0,"+(height-marge.top-marge.bottom)+")")
