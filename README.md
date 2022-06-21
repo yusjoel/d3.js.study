@@ -20,5 +20,7 @@
 1. event [教程](https://blog.csdn.net/qq_34414916/article/details/80035695) [Demo](https://yusjoel.github.io/d3.js.study/10-event/)
 1. pie [教程](https://blog.csdn.net/qq_34414916/article/details/80036301) [Demo](https://yusjoel.github.io/d3.js.study/11-pie/)
 
-## read csv
-http://bl.ocks.org/ndarville/7075823
+## 读取csv生成表格
+[v3版本代码](http://bl.ocks.org/ndarville/7075823)
+[v7版本代码](https://github.com/yusjoel/d3.js.study/read-csv/index.html)
+[v7版本Demo](https://yusjoel.github.io/d3.js.study/read-csv/)
